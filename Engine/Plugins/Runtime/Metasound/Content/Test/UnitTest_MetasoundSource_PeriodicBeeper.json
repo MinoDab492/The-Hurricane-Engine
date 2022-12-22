@@ -1,0 +1,222 @@
+{
+	"UniqueID": 3150660192,
+	"Metadata":
+	{
+		"NodeName": "Peroidic Beeper",
+		"NodeType": "MetasoundGraph",
+		"MetasoundDescription": "NSLOCTEXT(\"MetasoundFrontendUnitTests\", \"MetasoundDescription\", \"This class takes a float time (indicating the periodicity of the beep), and a frequency (for the actual frequency of the beep tone), and outputs audio.\")",
+		"PromptIfMissing": "NSLOCTEXT(\"MetasoundFrontendUnitTests\", \"PromptIfMissing\", \"This node is only availble for a very short time whenever we run unit tests :D\")",
+		"AuthorName": "NSLOCTEXT(\"MetasoundFrontendUnitTests\", \"AuthorName\", \"Ethan G (originally implemented by Phil Popp in C++)\")"
+	},
+	"Inputs": [
+		{
+			"Name": "Period",
+			"DisplayName": "",
+			"TypeName": "Primitive:Time",
+			"ToolTip": "NSLOCTEXT(\"MetasoundFrontendUnitTests\", \"PeriodInputTooltip\", \"The periodicity of how often we should beep, in seconds.\")",
+			"LiteralValue":
+			{
+				"LiteralType": "Float",
+				"AsBool": false,
+				"AsInteger": 0,
+				"AsFloat": 0.1,
+				"AsString": "",
+				"AsUObject": "",
+				"AsUObjectArray": []
+			}
+		},
+		{
+			"Name": "Frequency",
+			"DisplayName": "",
+			"TypeName": "Primitive:Frequency",
+			"ToolTip": "NSLOCTEXT(\"MetasoundFrontendUnitTests\", \"FrequencyInputTooltip\", \"The frequency of the beep itself; the higher the frequency, the higher-pitched the beep.\")",
+			"LiteralValue":
+			{
+				"LiteralType": "Float",
+				"AsBool": false,
+				"AsInteger": 0,
+				"AsFloat": 660,
+				"AsString": "",
+				"AsUObject": "",
+				"AsUObjectArray": []
+			}
+		}
+	],
+	"Outputs": [
+		{
+			"Name": "Generated Audio",
+			"DisplayName": "",
+			"TypeName": "Audio:Buffer",
+			"ToolTip": "NSLOCTEXT(\"MetasoundFrontendUnitTests\", \"OutputAudioTooltip\", \"A periodic, incessant beeping, which may cause some dogs to panic with the right input parameters.\")"
+		}
+	],
+	"DependencyIDs": [ 4799, 8959, 7466, 8589 ],
+	"Graph":
+	{
+		"Nodes": [
+			{
+				"UniqueID": 1933,
+				"Name": "Period",
+				"ObjectTypeOfNode": "Input",
+				"InputConnections": [],
+				"StaticParameters":
+				{
+				}
+			},
+			{
+				"UniqueID": 8087,
+				"Name": "Frequency",
+				"ObjectTypeOfNode": "Input",
+				"InputConnections": [],
+				"StaticParameters":
+				{
+				}
+			},
+			{
+				"UniqueID": 5850,
+				"Name": "Generated Audio",
+				"ObjectTypeOfNode": "Output",
+				"InputConnections": [
+					{
+						"InputName": "Generated Audio",
+						"NodeID": 7105,
+						"OutputName": "Audio",
+						"LiteralValue":
+						{
+							"LiteralType": "None",
+							"AsBool": false,
+							"AsInteger": 0,
+							"AsFloat": 1.4013e-45,
+							"AsString": "",
+							"AsUObject": "",
+							"AsUObjectArray": []
+						}
+					}
+				],
+				"StaticParameters":
+				{
+				}
+			},
+			{
+				"UniqueID": 3503,
+				"Name": "PeriodicBop",
+				"ObjectTypeOfNode": "External",
+				"InputConnections": [
+					{
+						"InputName": "Period",
+						"NodeID": 1933,
+						"OutputName": "Period",
+						"LiteralValue":
+						{
+							"LiteralType": "None",
+							"AsBool": false,
+							"AsInteger": 0,
+							"AsFloat": 1.4013e-45,
+							"AsString": "",
+							"AsUObject": "",
+							"AsUObjectArray": []
+						}
+					}
+				],
+				"StaticParameters":
+				{
+				}
+			},
+			{
+				"UniqueID": 8228,
+				"Name": "Osc",
+				"ObjectTypeOfNode": "External",
+				"InputConnections": [
+					{
+						"InputName": "Frequency",
+						"NodeID": 8087,
+						"OutputName": "Frequency",
+						"LiteralValue":
+						{
+							"LiteralType": "None",
+							"AsBool": false,
+							"AsInteger": 0,
+							"AsFloat": 1.4013e-45,
+							"AsString": "",
+							"AsUObject": "",
+							"AsUObjectArray": []
+						}
+					}
+				],
+				"StaticParameters":
+				{
+				}
+			},
+			{
+				"UniqueID": 1741,
+				"Name": "ADSR",
+				"ObjectTypeOfNode": "External",
+				"InputConnections": [
+					{
+						"InputName": "Bop",
+						"NodeID": 3503,
+						"OutputName": "Bop",
+						"LiteralValue":
+						{
+							"LiteralType": "None",
+							"AsBool": false,
+							"AsInteger": 0,
+							"AsFloat": 1.4013e-45,
+							"AsString": "",
+							"AsUObject": "",
+							"AsUObjectArray": []
+						}
+					}
+				],
+				"StaticParameters":
+				{
+				}
+			},
+			{
+				"UniqueID": 7105,
+				"Name": "AudioMultiply",
+				"ObjectTypeOfNode": "External",
+				"InputConnections": [
+					{
+						"InputName": "InputBuffer1",
+						"NodeID": 8228,
+						"OutputName": "Audio",
+						"LiteralValue":
+						{
+							"LiteralType": "None",
+							"AsBool": false,
+							"AsInteger": 0,
+							"AsFloat": 1.4013e-45,
+							"AsString": "",
+							"AsUObject": "",
+							"AsUObjectArray": []
+						}
+					},
+					{
+						"InputName": "InputBuffer2",
+						"NodeID": 1741,
+						"OutputName": "Envelope",
+						"LiteralValue":
+						{
+							"LiteralType": "None",
+							"AsBool": false,
+							"AsInteger": 0,
+							"AsFloat": 1.4013e-45,
+							"AsString": "",
+							"AsUObject": "",
+							"AsUObjectArray": []
+						}
+					}
+				],
+				"StaticParameters":
+				{
+				}
+			}
+		]
+	},
+	"ExternalNodeClassLookupInfo":
+	{
+		"ExternalNodeClassName": "None",
+		"ExternalNodeClassHash": 0
+	}
+}
