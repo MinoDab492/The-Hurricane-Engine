@@ -32,9 +32,10 @@ jobs:
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1.0.2
 
-      - name: Restore NuGet packages
-        working-directory: ${{env.GITHUB_WORKSPACE}}
-        run: nuget restore ${{env.SOLUTION_FILE_PATH}}
+#   This part causes issues about the .sln not existing, so I'll try without it, see if that works.
+#      - name: Restore NuGet packages
+#        working-directory: ${{env.GITHUB_WORKSPACE}}
+#        run: nuget restore ${{env.SOLUTION_FILE_PATH}}
 
       # Runs a set of commands using the runners shell
       - name: Install Engine Dependencies
