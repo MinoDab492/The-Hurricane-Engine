@@ -39,10 +39,10 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Install Engine Dependencies
-        run: setup.bat
+        run: ./setup.bat
         
       - name: Generate Visual Studio Solution
-        run: GenerateProjectFiles.bat
+        run: ./GenerateProjectFiles.bat
         
       - name: Compile Engine
         run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
